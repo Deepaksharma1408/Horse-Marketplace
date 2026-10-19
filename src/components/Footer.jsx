@@ -25,7 +25,7 @@ export default function Footer({ onNavigate, onOpenPrivateNetwork, onOpenListHor
                   <path d="M19 3L14 5l-2-2-4 3-3 7 2 3h4l2 5 3-1-1-6 3-2 3-7zm-4 4l-3-1 2-1 2 1-1 1z" />
                 </svg>
               </div>
-              <span className="brand-name" style={{ color: '#ffffff', fontSize: '1.5rem' }}>Equivalia</span>
+              <span className="brand-name" style={{ color: '#ffffff', fontSize: '1.5rem' }}>EliteHorse</span>
             </div>
 
             <p style={{ fontSize: '0.88rem', color: '#9da2b8', lineHeight: 1.6, maxWidth: '320px', marginBottom: '24px' }}>
@@ -123,7 +123,7 @@ export default function Footer({ onNavigate, onOpenPrivateNetwork, onOpenListHor
         {/* Bottom row */}
         <div className="footer-bottom-row">
           <div>
-            © 2026 Equivalia Sport Horses Ltd. All rights reserved.
+            © 2026 EliteHorse Sport Horses Ltd. All rights reserved.
           </div>
 
           <div style={{ display: 'flex', gap: '24px' }}>

@@ -33,7 +33,7 @@ export default function Navbar({
               </svg>
             </div>
             <div>
-              <span className="brand-name">Equivalia</span>
+              <span className="brand-name">EliteHorse</span>
               <span className="brand-sub">Sport Horse Marketplace</span>
             </div>
           </div>

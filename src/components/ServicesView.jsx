@@ -10,7 +10,7 @@ export default function ServicesView({ onOpenPrivateNetwork, onOpenListHorse }) 
         <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 60px' }}>
           <div className="eyebrow" style={{ justifyContent: 'center', marginBottom: '12px' }}>
             <Sparkles size={14} />
-            The Equivalia Difference
+            The EliteHorse Difference
           </div>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 4.5vw, 3.8rem)', lineHeight: 1.12, marginBottom: '20px' }}>
             Reinventing the Global Sport Horse Trade with <em>Total Transparency.</em>
@@ -121,7 +121,7 @@ export default function ServicesView({ onOpenPrivateNetwork, onOpenListHorse }) 
               Wall of Trust
             </span>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem' }}>
-              What Equestrians Say About Equivalia
+              What Equestrians Say About EliteHorse
             </h3>
           </div>
 

@@ -113,7 +113,7 @@ export default function ListHorseModal({ onClose, onHorseAdded }) {
             </span>
           </div>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.2rem', marginTop: '6px' }}>
-            List Your Sport Horse on Equivalia
+            List Your Sport Horse on EliteHorse
           </h2>
           <p style={{ fontSize: '0.92rem', color: 'var(--color-slate)' }}>
             Free listing · Direct connection with buyers · Standardized veterinary dossier protection
@@ -411,7 +411,7 @@ export default function ListHorseModal({ onClose, onHorseAdded }) {
 
                   <div style={{ background: 'var(--color-gold-light)', padding: '16px', borderRadius: 'var(--radius-md)', border: '1px solid #ebd7bf' }}>
                     <strong style={{ fontSize: '0.9rem', color: '#7a5a29', display: 'block', marginBottom: '4px' }}>
-                      Equivalia Seller Advantage
+                      EliteHorse Seller Advantage
                     </strong>
                     <p style={{ fontSize: '0.82rem', color: '#685028', margin: 0 }}>
                       No listing fees. Sellers only pay a low standard commission upon successful sale. Your horse will be marketed to verified international buyers and VIP syndicate scouts.

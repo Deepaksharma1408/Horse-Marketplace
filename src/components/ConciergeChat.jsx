@@ -6,7 +6,7 @@ export default function ConciergeChat() {
   const [messages, setMessages] = useState([
     {
       sender: 'concierge',
-      text: "Hello! I'm Pierre from the Equivalia European scouting desk. Looking for a specific sport horse or planning a European trial tour?",
+      text: "Hello! I'm Pierre from the EliteHorse European scouting desk. Looking for a specific sport horse or planning a European trial tour?",
       time: 'Just now'
     }
   ]);
@@ -59,10 +59,10 @@ export default function ConciergeChat() {
                 fontWeight: '700',
                 fontSize: '0.85rem'
               }}>
-                EQ
+                EH
               </div>
               <div>
-                <strong style={{ display: 'block', fontSize: '0.9rem' }}>Equivalia Concierge</strong>
+                <strong style={{ display: 'block', fontSize: '0.9rem' }}>EliteHorse Concierge</strong>
                 <span style={{ fontSize: '0.72rem', color: '#a2a7be', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#2dd4bf' }} />
                   Senior Scout Online

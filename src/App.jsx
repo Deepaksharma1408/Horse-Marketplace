@@ -25,7 +25,7 @@ export default function App() {
 
   // Master catalog of horses
   const [horses, setHorses] = useState(() => {
-    const saved = localStorage.getItem('equivalia_custom_horses');
+    const saved = localStorage.getItem('elitehorse_custom_horses') || localStorage.getItem('equivalia_custom_horses');
     if (saved) {
       try {
         return [...HORSES_DATA, ...JSON.parse(saved)];
@@ -38,7 +38,7 @@ export default function App() {
 
   // Saved / Wishlist IDs
   const [savedHorseIds, setSavedHorseIds] = useState(() => {
-    const saved = localStorage.getItem('equivalia_wishlist');
+    const saved = localStorage.getItem('elitehorse_wishlist') || localStorage.getItem('equivalia_wishlist');
     return saved ? JSON.parse(saved) : ['horse-1', 'horse-4'];
   });
 
@@ -70,7 +70,7 @@ export default function App() {
 
   // Persist Wishlist
   useEffect(() => {
-    localStorage.setItem('equivalia_wishlist', JSON.stringify(savedHorseIds));
+    localStorage.setItem('elitehorse_wishlist', JSON.stringify(savedHorseIds));
   }, [savedHorseIds]);
 
   // Wishlist actions
@@ -97,9 +97,9 @@ export default function App() {
   // Add new horse from seller wizard
   const handleAddNewHorse = (newHorse) => {
     setHorses((prev) => [newHorse, ...prev]);
-    const customList = JSON.parse(localStorage.getItem('equivalia_custom_horses') || '[]');
+    const customList = JSON.parse(localStorage.getItem('elitehorse_custom_horses') || localStorage.getItem('equivalia_custom_horses') || '[]');
     customList.unshift(newHorse);
-    localStorage.setItem('equivalia_custom_horses', JSON.stringify(customList));
+    localStorage.setItem('elitehorse_custom_horses', JSON.stringify(customList));
   };
 
   // Reset filters
@@ -213,7 +213,7 @@ export default function App() {
   const savedHorsesList = horses.filter((h) => savedHorseIds.includes(h.id));
 
   return (
-    <div className="equivalia-app">
+    <div className="elitehorse-app">
       {/* Top Navigation */}
       <Navbar
         currentView={currentView}
