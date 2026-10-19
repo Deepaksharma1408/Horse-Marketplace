@@ -69,7 +69,7 @@ export default function ListHorseModal({ onClose, onHorseAdded }) {
       },
       images: [
         formData.imageUrl,
-        "https://images.unsplash.com/photo-1598974357801-cbca100e6571?auto=format&fit=crop&w=1200&q=80"
+        "https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?auto=format&fit=crop&w=1200&q=80"
       ],
       description: formData.description || 'Recently listed sport horse with verified pedigree and radiographs on file.',
       veterinary: {

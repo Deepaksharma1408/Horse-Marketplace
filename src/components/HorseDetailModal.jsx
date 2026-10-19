@@ -112,6 +112,10 @@ export default function HorseDetailModal({
               src={images[activeImgIndex]}
               alt={horse.name}
               className="dossier-main-img"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=1200&q=80";
+              }}
             />
             <div className="dossier-thumbs-col">
               {images.map((img, idx) => (
@@ -121,6 +125,10 @@ export default function HorseDetailModal({
                   alt={`Thumbnail ${idx + 1}`}
                   className={`dossier-thumb-img ${idx === activeImgIndex ? 'active' : ''}`}
                   onClick={() => setActiveImgIndex(idx)}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=1200&q=80";
+                  }}
                 />
               ))}
             </div>
