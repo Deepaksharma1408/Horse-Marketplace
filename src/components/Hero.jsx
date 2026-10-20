@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Sparkles, ShieldCheck, ArrowRight, Award, Compass, Play } from 'lucide-react';
 import { DISCIPLINES } from '../data/horsesData';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function Hero({
   searchTerm,
@@ -102,25 +103,33 @@ export default function Hero({
         {/* Stats Strip */}
         <div className="hero-stats-strip">
           <div className="hero-stat-card">
-            <span className="stat-metric">3,200+</span>
+            <span className="stat-metric">
+              <AnimatedCounter end={3200} suffix="+" />
+            </span>
             <span className="stat-label">Private Network Horses</span>
             <span className="stat-sub">Unlisted premier sport horses</span>
           </div>
 
           <div className="hero-stat-card">
-            <span className="stat-metric">Up to 40%</span>
+            <span className="stat-metric">
+              <AnimatedCounter end={40} prefix="Up to " suffix="%" />
+            </span>
             <span className="stat-label">Lower Commission</span>
             <span className="stat-sub">Transparent direct-from-seller deals</span>
           </div>
 
           <div className="hero-stat-card">
-            <span className="stat-metric">3x</span>
+            <span className="stat-metric">
+              <AnimatedCounter end={3} suffix="x" separator={false} />
+            </span>
             <span className="stat-label">Faster Matchmaking</span>
             <span className="stat-sub">Concierge vetting & test rides</span>
           </div>
 
           <div className="hero-stat-card">
-            <span className="stat-metric">100%</span>
+            <span className="stat-metric">
+              <AnimatedCounter end={100} suffix="%" />
+            </span>
             <span className="stat-label">Verified Radiographs</span>
             <span className="stat-sub">Standardized 24+ digital X-rays</span>
           </div>

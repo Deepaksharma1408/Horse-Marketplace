@@ -1,9 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X, Heart, Share2, Calendar, MessageCircle, ShieldCheck,
   Award, CheckCircle2, ChevronRight, FileText, Download, Sparkles, Scale
 } from 'lucide-react';
 import { CURRENCIES } from '../data/horsesData';
+import AnimatedCounter from './AnimatedCounter';
+
+function SuitabilityBarItem({ label, score, index }) {
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimated(true);
+    }, 40 + index * 100);
+    return () => clearTimeout(timer);
+  }, [index]);
+
+  return (
+    <div style={{ background: 'var(--color-cream)', padding: '16px', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.82rem', fontWeight: '600' }}>
+        <span>{label}</span>
+        <strong style={{ color: 'var(--color-gold-hover)', fontVariantNumeric: 'tabular-nums' }}>
+          {animated ? <AnimatedCounter end={score} suffix="%" duration={900} immediate={true} /> : '0%'}
+        </strong>
+      </div>
+      <div style={{ width: '100%', height: '7px', background: '#e0ded8', borderRadius: '4px', overflow: 'hidden' }}>
+        <div
+          style={{
+            width: animated ? `${score}%` : '0%',
+            height: '100%',
+            background: 'linear-gradient(90deg, var(--color-obsidian) 0%, #353956 100%)',
+            borderRadius: '4px',
+            transition: 'width 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function HorseDetailModal({
   horse,
@@ -231,15 +265,12 @@ export default function HorseDetailModal({
                   { label: 'Trainability & Rhythm', score: horse.suitability.rideability },
                   { label: 'Bravery & Ring Presence', score: horse.suitability.bravery }
                 ].map((item, idx) => (
-                  <div key={idx} style={{ background: 'var(--color-cream)', padding: '16px', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border)' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.82rem', fontWeight: '600' }}>
-                      <span>{item.label}</span>
-                      <strong style={{ color: 'var(--color-gold-hover)' }}>{item.score}%</strong>
-                    </div>
-                    <div style={{ width: '100%', height: '6px', background: '#e0ded8', borderRadius: '3px', overflow: 'hidden' }}>
-                      <div style={{ width: `${item.score}%`, height: '100%', background: 'var(--color-obsidian)', borderRadius: '3px' }} />
-                    </div>
-                  </div>
+                  <SuitabilityBarItem
+                    key={idx}
+                    index={idx}
+                    label={item.label}
+                    score={item.score}
+                  />
                 ))}
               </div>
 

@@ -291,15 +291,23 @@ a {
 }
 
 .brand-symbol {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-obsidian) 0%, #30334a 100%);
+  background: radial-gradient(circle at 35% 30%, #20243a 0%, #10121d 100%);
+  border: 1px solid rgba(200, 169, 126, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-gold);
-  box-shadow: 0 4px 10px rgba(18, 19, 28, 0.15);
+  box-shadow: 0 4px 12px rgba(18, 19, 28, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.brand-logo:hover .brand-symbol {
+  transform: scale(1.06);
+  border-color: var(--color-gold);
+  box-shadow: 0 6px 16px rgba(200, 169, 126, 0.3);
 }
 
 .brand-name {
@@ -745,13 +753,26 @@ a {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   position: relative;
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .horse-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 16px 32px rgba(18, 19, 28, 0.12);
   border-color: #d8cebf;
 }
 
@@ -814,6 +835,25 @@ a {
 .card-save-btn.saved {
   color: var(--color-rose);
   background: #ffffff;
+}
+
+.card-save-btn.heart-pop {
+  animation: heartSpringPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes heartSpringPop {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.42) rotate(-10deg);
+  }
+  65% {
+    transform: scale(0.9) rotate(4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 .card-media-nav-btn {
@@ -1048,6 +1088,42 @@ a {
   height: 100%;
 }
 
+/* Animated Flight & Logistics Route Lines */
+.map-route-line {
+  stroke: rgba(200, 169, 126, 0.55);
+  stroke-width: 0.85;
+  stroke-dasharray: 4, 4;
+  stroke-linecap: round;
+  animation: flightRouteDash 2.8s linear infinite;
+}
+
+.map-route-line-accent {
+  stroke: rgba(225, 145, 143, 0.6);
+  stroke-width: 1;
+  stroke-dasharray: 5, 5;
+  stroke-linecap: round;
+  animation: flightRouteDashReverse 3.6s linear infinite;
+}
+
+@keyframes flightRouteDash {
+  from {
+    stroke-dashoffset: 32;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes flightRouteDashReverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 40;
+  }
+}
+
+/* Dual-Wave Sonar Radar Pin Marker */
 .stable-pin-marker {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -1056,43 +1132,94 @@ a {
   transition: transform var(--transition-fast);
 }
 
+.pin-radar-container {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pin-pulse {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--color-gold);
   border: 2px solid #ffffff;
   box-shadow: 0 0 12px var(--color-gold);
   position: relative;
+  z-index: 2;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Radar Sonar Wave 1 */
+.pin-pulse::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  transform: translate(-50%, -50%);
+  animation: radarSonarPulse 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  pointer-events: none;
+}
+
+/* Radar Sonar Wave 2 (delayed phase) */
 .pin-pulse::after {
   content: "";
   position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  border: 2px solid var(--color-gold);
-  animation: mapPulse 2s infinite ease-out;
-  opacity: 0.8;
+  border: 1.5px solid var(--color-gold);
+  transform: translate(-50%, -50%);
+  animation: radarSonarPulse 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1) 0.8s;
+  pointer-events: none;
 }
 
-@keyframes mapPulse {
+@keyframes radarSonarPulse {
   0% {
-    transform: scale(0.6);
-    opacity: 0.9;
+    width: 14px;
+    height: 14px;
+    opacity: 0.95;
+  }
+  60% {
+    opacity: 0.45;
   }
   100% {
-    transform: scale(1.8);
+    width: 46px;
+    height: 46px;
     opacity: 0;
   }
 }
 
-.stable-pin-marker:hover {
-  transform: translate(-50%, -50%) scale(1.25);
-  z-index: 20;
+.stable-pin-marker:hover,
+.stable-pin-marker.active {
+  transform: translate(-50%, -50%) scale(1.22);
+  z-index: 25;
+}
+
+.stable-pin-marker.active .pin-pulse {
+  background: var(--color-rose);
+  border-color: #ffffff;
+  box-shadow: 0 0 16px var(--color-rose);
+}
+
+.stable-pin-marker.active .pin-pulse::before,
+.stable-pin-marker.active .pin-pulse::after {
+  border-color: var(--color-rose);
+}
+
+.animated-counter-value {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 .map-horse-popup-card {

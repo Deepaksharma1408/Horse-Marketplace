@@ -4,6 +4,7 @@ import { CURRENCIES } from '../data/horsesData';
 
 export default function HorseCard({
   horse,
+  index = 0,
   currency = 'EUR',
   isSaved = false,
   onToggleSave,
@@ -12,10 +13,18 @@ export default function HorseCard({
   onSelectHorse
 }) {
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
+  const [isPopping, setIsPopping] = useState(false);
 
   const images = horse.images && horse.images.length > 0
     ? horse.images
     : ["https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800&q=80"];
+
+  const handleToggleHeart = (e) => {
+    e.stopPropagation();
+    setIsPopping(true);
+    setTimeout(() => setIsPopping(false), 500);
+    onToggleSave(horse.id);
+  };
 
   const handlePrevImg = (e) => {
     e.stopPropagation();
@@ -38,7 +47,10 @@ export default function HorseCard({
   };
 
   return (
-    <div className="horse-card">
+    <div
+      className="horse-card"
+      style={{ animationDelay: `${Math.min(index * 55, 450)}ms` }}
+    >
       {/* Media & Carousel Wrapper */}
       <div className="card-media-wrapper" onClick={() => onSelectHorse(horse)}>
         <img
@@ -68,11 +80,8 @@ export default function HorseCard({
           </div>
 
           <button
-            className={`card-save-btn ${isSaved ? 'saved' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleSave(horse.id);
-            }}
+            className={`card-save-btn ${isSaved ? 'saved' : ''} ${isPopping ? 'heart-pop' : ''}`}
+            onClick={handleToggleHeart}
             title={isSaved ? "Remove from wishlist" : "Save to wishlist"}
           >
             <Heart size={18} fill={isSaved ? "currentColor" : "none"} />

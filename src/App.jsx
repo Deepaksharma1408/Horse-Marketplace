@@ -308,11 +308,15 @@ export default function App() {
                     </div>
                   </div>
                 ) : (
-                  <div className="horses-grid">
-                    {filteredHorses.map((horse) => (
+                  <div
+                    className="horses-grid"
+                    key={`${activeCollection}-${selectedDiscipline}-${selectedGender}-${selectedBreed}-${selectedLevel}-${selectedPriceRange}-${selectedCountry}-${sortBy}-${onlyMotivated}-${onlyVerifiedVet}-${searchTerm}`}
+                  >
+                    {filteredHorses.map((horse, index) => (
                       <HorseCard
                         key={horse.id}
                         horse={horse}
+                        index={index}
                         currency={currency}
                         isSaved={savedHorseIds.includes(horse.id)}
                         onToggleSave={toggleSaveHorse}

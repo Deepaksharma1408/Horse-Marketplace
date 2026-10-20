@@ -81,13 +81,35 @@ export default function HorseMap({
             strokeDasharray="2 2"
           />
 
-          {/* Major equestrian route connectors */}
-          <line x1="38" y1="44" x2="48" y2="35" stroke="rgba(200, 169, 126, 0.25)" strokeWidth="0.6" strokeDasharray="1 1" />
-          <line x1="38" y1="44" x2="62" y2="64" stroke="rgba(200, 169, 126, 0.25)" strokeWidth="0.6" strokeDasharray="1 1" />
-          <line x1="42" y1="39" x2="30" y2="52" stroke="rgba(200, 169, 126, 0.25)" strokeWidth="0.6" strokeDasharray="1 1" />
+          {/* Animated Equestrian Flight & Transport Route Corridors */}
+          <path
+            d="M 38 44 Q 44 38, 48 35"
+            className="map-route-line"
+            fill="none"
+          />
+          <path
+            d="M 38 44 Q 52 52, 62 64"
+            className="map-route-line"
+            fill="none"
+          />
+          <path
+            d="M 38 44 Q 34 47, 30 52"
+            className="map-route-line"
+            fill="none"
+          />
+          <path
+            d="M 48 35 Q 56 48, 62 64"
+            className="map-route-line-accent"
+            fill="none"
+          />
+          <path
+            d="M 30 52 Q 44 58, 62 64"
+            className="map-route-line"
+            fill="none"
+          />
         </svg>
 
-        {/* Stable Map Pins */}
+        {/* Stable Map Pins with Dual-Wave Sonar Radar */}
         {horses
           .filter((h) => selectedRegion === 'all' || h.country === selectedRegion)
           .map((horse) => {
@@ -97,7 +119,7 @@ export default function HorseMap({
             return (
               <div
                 key={horse.id}
-                className="stable-pin-marker"
+                className={`stable-pin-marker ${isSelected ? 'active' : ''}`}
                 style={{
                   left: `${coords.x}%`,
                   top: `${coords.y}%`
@@ -105,28 +127,26 @@ export default function HorseMap({
                 onClick={() => setActivePinHorse(horse)}
                 onMouseEnter={() => setActivePinHorse(horse)}
               >
-                <div
-                  className="pin-pulse"
-                  style={{
-                    backgroundColor: isSelected ? 'var(--color-rose)' : 'var(--color-gold)',
-                    transform: isSelected ? 'scale(1.4)' : 'scale(1)'
-                  }}
-                />
+                <div className="pin-radar-container">
+                  <div className="pin-pulse" />
+                </div>
                 <span
                   style={{
                     position: 'absolute',
-                    top: '-20px',
+                    top: '-22px',
                     left: '50%',
                     transform: 'translateX(-50%)',
                     whiteSpace: 'nowrap',
-                    background: 'rgba(18, 19, 28, 0.85)',
+                    background: isSelected ? 'var(--color-rose)' : 'rgba(18, 19, 28, 0.88)',
                     color: '#ffffff',
-                    padding: '2px 8px',
+                    padding: '3px 9px',
                     borderRadius: '4px',
-                    fontSize: '0.65rem',
+                    fontSize: '0.68rem',
                     fontWeight: '700',
                     pointerEvents: 'none',
-                    border: '1px solid rgba(255, 255, 255, 0.1)'
+                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                    transition: 'all 0.2s ease'
                   }}
                 >
                   {horse.flag} {horse.name}

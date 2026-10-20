@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Compass, Lock, Truck, CheckCircle2, Award, Sparkles, ArrowRight, Star } from 'lucide-react';
 import { SERVICES, TESTIMONIALS, TRUST_STATS } from '../data/testimonialsData';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function ServicesView({ onOpenPrivateNetwork, onOpenListHorse }) {
   return (
@@ -101,7 +102,10 @@ export default function ServicesView({ onOpenPrivateNetwork, onOpenListHorse }) 
             {TRUST_STATS.map((stat, i) => (
               <div key={i} style={{ borderLeft: '2px solid var(--color-gold)', paddingLeft: '20px' }}>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '3.2rem', fontWeight: '700', lineHeight: 1, color: '#ffffff' }}>
-                  {stat.metric}
+                  {i === 0 && <AnimatedCounter end={3} suffix="x" separator={false} />}
+                  {i === 1 && <AnimatedCounter end={40} suffix="%" />}
+                  {i === 2 && <AnimatedCounter end={5} suffix="x" separator={false} />}
+                  {i === 3 && <AnimatedCounter end={3200} suffix="+" />}
                 </div>
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: '0.9rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-gold)', marginTop: '8px' }}>
                   {stat.label}
